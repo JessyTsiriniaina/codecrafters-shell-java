@@ -14,7 +14,8 @@ public class Main {
             if(matcher.find()) {
                 String[] splittedInput = input.split(" ");
                 for(int i = 1; i < splittedInput.length; i++) {
-                    System.out.print(splittedInput[i] + " ");
+                    System.out.print(splittedInput[i]);
+                    System.out.print(i != (splittedInput.length - 1) ? " " : "");
                 }
                 break;
             }
