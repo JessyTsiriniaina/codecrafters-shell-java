@@ -11,19 +11,20 @@ public class Main {
             Pattern pattern = Pattern.compile("^echo");
             Matcher matcher = pattern.matcher(input);
 
+            
+            if(input.equals("exit 0")) {
+                break;
+            }
             if(matcher.find()) {
                 String[] splittedInput = input.split(" ");
                 for(int i = 1; i < splittedInput.length; i++) {
                     System.out.print(splittedInput[i]);
                     System.out.print(i != (splittedInput.length - 1) ? " " : "");
                 }
-                break;
+            } 
+            else {
+                System.out.println(input + ": command not found");
             }
-            
-            if(input.equals("exit 0")) {
-                break;
-            }
-            System.out.println(input + ": command not found");
         }
     }
 }
