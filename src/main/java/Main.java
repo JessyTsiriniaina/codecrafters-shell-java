@@ -13,7 +13,6 @@ public class Main {
 
             if(matcher.find()) {
                 String[] splittedInput = input.split(" ");
-                System.out.println();
                 for(int i = 1; i < splittedInput.length; i++) {
                     System.out.print(splittedInput[i] + " ");
                 }
