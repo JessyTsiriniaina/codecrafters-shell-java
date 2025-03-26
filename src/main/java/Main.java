@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) throws Exception {
         while (true) {
-            System.out.print("$ ");
+            System.out.println("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             Pattern pattern = Pattern.compile("^echo");
