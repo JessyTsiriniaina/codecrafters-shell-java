@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) throws Exception {
         while (true) {
-            System.out.println("$ ");
+            System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             Pattern pattern = Pattern.compile("^echo");
@@ -21,6 +21,7 @@ public class Main {
                     System.out.print(splittedInput[i]);
                     System.out.print(i != (splittedInput.length - 1) ? " " : "");
                 }
+                System.out.println();
             } 
             else {
                 System.out.println(input + ": command not found");
