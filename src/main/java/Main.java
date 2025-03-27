@@ -24,7 +24,7 @@ public class Main {
 
             
             if (Arrays.asList(builtinCommands).contains(command)) {
-                if (command.equals("exit 0")) {
+                if (input.equals("exit 0")) {
                     break;
                 }
                 switch (command) {
