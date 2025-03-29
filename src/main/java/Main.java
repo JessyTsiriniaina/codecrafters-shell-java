@@ -54,12 +54,17 @@ public class Main {
                     if(splittedInput.length > 1)
                         type(splittedInput[1], builtinCommands);
                     break;
-                default: /*System.out.println(input + ": command not found");*/
-                    Process process = runtime.exec(splittedInput);
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        System.out.println(line);
+                default: 
+                    if(getPath(command) != null) {
+                        Process process = runtime.exec(splittedInput);
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            System.out.println(line);
+                        }
+                    }
+                    else {
+                        System.out.println(input + ": command not found");
                     }
             }
         }
