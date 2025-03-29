@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -18,9 +20,9 @@ public class Main {
         else System.out.println(command + ": not found");
     }
 
-    public static String getPath(String parameter) {
+    public static String getPath(String command) {
         for (String path : System.getenv("PATH").split(":")) {
-          Path fullPath = Path.of(path, parameter);
+          Path fullPath = Path.of(path, command);
           if (Files.isRegularFile(fullPath)) {
             return fullPath.toString();
           }
@@ -29,15 +31,18 @@ public class Main {
       }
 
     public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        Runtime runtime = Runtime.getRuntime();
+
         while (true) {
             System.out.print("$ ");
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             String[] builtinCommands = {"echo", "type", "exit"};
             String[] splittedInput = input.split(" ");
             String command = splittedInput[0];
 
             if (input.equals("exit 0")) {
+                scanner.close();
                 System.exit(0);
             }
             
@@ -49,7 +54,13 @@ public class Main {
                     if(splittedInput.length > 1)
                         type(splittedInput[1], builtinCommands);
                     break;
-                default: System.out.println(input + ": command not found");
+                default: /*System.out.println(input + ": command not found");*/
+                    Process process = runtime.exec(splittedInput);
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
+                    }
             }
         }
     }
